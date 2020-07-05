@@ -14,3 +14,5 @@ Once you get the key functionalities in place, you can further expand the app in
 * Add React Router to the app (npm install react-router). Check out the quickstart guide to add routes. For instance, routes that can display the 5-day forecast, along with the name-of-day and the hourly forecast for that day.
 * Sign up on the Open Weather Map to obtain a free API key and to fetch a 5-day forecast. Then feed this data in your app. 
 * If you wish to make the app even fancier, you can add a graphics library like vx. You can check out these vx examples for inspiration.
+
+* Preview: https://miro.medium.com/max/1400/1*_kpXka6VYTtrGqxE-q0Ozg.png
