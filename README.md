@@ -1,6 +1,6 @@
 # WeatherApp
-_This is my first React proyect. 
-My intention developing this is to put in practice every piece of knowleadge learned from some internet sources such as CodeAcademy and Youtube._
+_This is my first React project. 
+My intention developing this is to put in practice every piece of knowledge learned from some internet sources such as Code Academy and Youtube._
 
 ## Problem to solve 🚀
 The weather app must have all the basic functions, including city name, current weather icon, temperature, humidity, wind speed, etc. It must display the recording of both high and low temperatures of each day, including apt images for sunny/rainy/cloudy/snowy weather conditions. It should have a responsive design and refresh every five minutes with the exact temperature and weather conditions.
