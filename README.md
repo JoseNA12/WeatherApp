@@ -1,2 +1,13 @@
 # WeatherApp
-This is my first React proyect. With intention developing this is to put in practices all my knowleadge lerned from some internet sources such as CodeAcademy and Youtube.
+_This is my first React proyect. 
+My intention developing this is to put in practice every piece of knowleadge learned from some internet sources such as CodeAcademy and Youtube._
+
+## Problem to solve 🚀
+The weather app must have all the basic functions, including city name, current weather icon, temperature, humidity, wind speed, etc. It must display the recording of both high and low temperatures of each day, including apt images for sunny/rainy/cloudy/snowy weather conditions. It should have a responsive design and refresh every five minutes with the exact temperature and weather conditions.
+
+Once you get the key functionalities in place, you can further expand the app in the following ways:
+
+* Include the functionality wherein the user can click on a particular day of the week to see the hourly forecast.
+* Add React Router to the app (npm install react-router). Check out the quickstart guide to add routes. For instance, routes that can display the 5-day forecast, along with the name-of-day and the hourly forecast for that day. 
+* Sign up on the Open Weather Map to obtain a free API key and to fetch a 5-day forecast. Then feed this data in your app. 
+* If you wish to make the app even fancier, you can add a graphics library like vx. You can check out these vx examples for inspiration.
