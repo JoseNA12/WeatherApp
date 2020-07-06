@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Container from 'react-bootstrap/Container';
+import CardDeck from 'react-bootstrap/CardDeck';
+
+import DayConditionContainer from './components/DayCondition/DayConditionContainer';
+import Header from './components/Header/Header';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+    return (
+        <Container>
+            <Jumbotron>
+                <h1 className="header text-center">5-Days Weather App</h1>
+            </Jumbotron>
+
+            <Header text="Hola Mundo"/>
+            
+            <CardDeck>
+                <DayConditionContainer />
+            </CardDeck>
+        </Container>
+    );
+};
 
 export default App;

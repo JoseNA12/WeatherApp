@@ -2,7 +2,7 @@
 _This is my first React project. 
 My intention in developing this is to put in practice every piece of knowledge learned from some internet sources such as Code Academy and Youtube._
 
-* This project was bootstrapped with Create React App.
+* **NOTE**: This project was bootstrapped with Create React App.
 
 ## Problem to solve 🚀
 
@@ -16,3 +16,27 @@ Once you get the key functionalities in place, you can further expand the app in
 * If you wish to make the app even fancier, you can add a graphics library like vx. You can check out these vx examples for inspiration.
 
 * Preview: https://miro.medium.com/max/1400/1*_kpXka6VYTtrGqxE-q0Ozg.png
+
+## Requeriments 📋
+
+### NodeJS
+
+```
+https://nodejs.org/es/download/
+```
+
+### ReactJS
+
+```
+npm install -g create-react-app
+```
+
+### Bootstrap
+
+```
+npm install react-bootstrap bootstrap
+```
+
+## Autores ✒️
+
+* **José Navarro** - *Proyecto* - [JoseNA12](https://github.com/JoseNA12)
