@@ -1,6 +1,7 @@
 import React from 'react';
+
+import { card, img } from './DayCondition.css.jsx';
 import Card from 'react-bootstrap/Card';
-import { imgForecast } from './DayCondition.css.jsx';
 
 
 class DayCondition extends React.Component {
@@ -25,11 +26,11 @@ class DayCondition extends React.Component {
 
     render() {
         return (
-            <Card className="text-center">
-                <Card.Body>
+            <Card className="text-center" style={ card }>
+                <Card.Body> 
                     <Card.Title><b>{ this.state.day }</b></Card.Title>
                     <small className="text-muted">{ `${ this.state.date }, ${ this.state.time }` }</small> <br />
-                    <Card.Img variant="top" src={ require(`../../images/forecast/${ this.state.image }.png`) } style={ imgForecast } /><br />
+                    <img className="imgForecast" variant="top" src={ require(`../../images/forecast/${ this.state.image }.png`) } alt={ this.props.condition } style={ img }/><br />
                     <h3><b>{ this.state.temperatureValue }°</b></h3>
                     <small className="text-muted">{ `Min: ${ this.state.temperatureMin }° / Max: ${ this.state.temperatureMax }°` }</small> <br /><br />
                     &#x2602; <small className="text-muted">{ `${ this.state.precipitation }%` }</small> <br />

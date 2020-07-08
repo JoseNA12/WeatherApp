@@ -3,13 +3,13 @@ import Forecast from './components/Forecast/Forecast'
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-import './App.css';
+import { jumbotron } from './App.css.jsx';
 
 
 const App = () => {
     return (
         <Container>
-            <Jumbotron>
+            <Jumbotron style={ jumbotron }> 
                 <h1 className="header text-center">5-Days Weather App</h1>
             </Jumbotron>
 
