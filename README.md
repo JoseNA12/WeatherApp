@@ -37,6 +37,12 @@ npm install -g create-react-app
 npm install react-bootstrap bootstrap
 ```
 
+### Axios
+
+```
+npm install axios
+```
+
 ## Autores ✒️
 
 * **José Navarro** - *Proyecto* - [JoseNA12](https://github.com/JoseNA12)
