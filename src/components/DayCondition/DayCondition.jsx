@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { card, img } from './DayCondition.css.jsx';
+import { cardCss, imgCss } from './DayCondition.css.jsx';
 import Card from 'react-bootstrap/Card';
 
 
@@ -20,17 +20,18 @@ class DayCondition extends React.Component {
             humedity:           this.props.humedity,
             windSpeed:          this.props.windSpeed,
             precipitation:      this.props.precipitation, 
-            condition:          this.props.condition
+            condition:          this.props.condition,
+            customClass:        this.props.customClass
         }
     }
 
     render() {
         return (
-            <Card className="text-center" style={ card }>
+            <Card className={ `text-center` } style={ { ...cardCss, ...this.state.customClass } }>
                 <Card.Body> 
                     <Card.Title><b>{ this.state.day }</b></Card.Title>
                     <small className="text-muted">{ `${ this.state.date }, ${ this.state.time }` }</small> <br />
-                    <img className="imgForecast" variant="top" src={ require(`../../images/forecast/${ this.state.image }.png`) } alt={ this.props.condition } style={ img }/><br />
+                    <img className="imgForecast" variant="top" src={ require(`../../images/forecast/${ this.state.image }.png`) } alt={ this.props.condition } style={ imgCss }/><br />
                     <h3><b>{ this.state.temperatureValue }°</b></h3>
                     <small className="text-muted">{ `Min: ${ this.state.temperatureMin }° / Max: ${ this.state.temperatureMax }°` }</small> <br /><br />
                     &#x2602; <small className="text-muted">{ `${ this.state.precipitation }%` }</small> <br />

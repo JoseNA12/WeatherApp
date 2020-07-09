@@ -1,7 +1,9 @@
 import React from 'react';
+import DayCondition from '../DayCondition/DayCondition';
+
 import CardDeck from 'react-bootstrap/CardDeck';
 import Header from '../Header/Header';
-import DayCondition from '../DayCondition/DayCondition';
+import { firstCardCss } from './Forecast.css.jsx';
 
 const axios = require('axios').default;
 
@@ -48,7 +50,7 @@ class Forecast extends React.Component {
 
         const cards = this.state.daysCondition.map((day, index) => {
             const date = this.getFormatDate(day.ts);
-
+            
             return (
                 <DayCondition 
                     key=                { index }
@@ -63,6 +65,7 @@ class Forecast extends React.Component {
                     windSpeed=          { day.wind_gust_spd }
                     precipitation=      { day.pop }
                     condition=          { day.weather.description }
+                    customClass=        { index === 0 ? firstCardCss : {} }
                 />
             );
         });

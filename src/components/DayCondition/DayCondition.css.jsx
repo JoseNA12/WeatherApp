@@ -1,8 +1,8 @@
-export const img = {
+export const imgCss = {
     width: "50px"
 }
 
-export const card = {
+export const cardCss = {
     backgroundColor: "rgb(35, 38, 39)",
     borderTopColor: "rgba(140, 130, 115, 0.13)",
     borderRightColor: "rgba(140, 130, 115, 0.13)",
