@@ -1,19 +1,19 @@
 import React from 'react';
 import Forecast from './components/Forecast/Forecast'
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-import { jumbotron } from './App.css.jsx';
+import NavigationBar from './components/NavigationBar/NavigationBar';
+import Footer from './components/Footer/Footer';
 
 
 const App = () => {
     return (
         <Container>
-            <Jumbotron style={ jumbotron }> 
-                <h1 className="header text-center">5-Days Weather App</h1>
-            </Jumbotron>
+            <NavigationBar />
 
-            <Forecast/>
+            <Forecast />
+
+            <Footer />
         </Container>
     );
 };

@@ -3,7 +3,8 @@ import DayCondition from '../DayCondition/DayCondition';
 
 import CardDeck from 'react-bootstrap/CardDeck';
 import Header from '../Header/Header';
-import { firstCardCss } from './Forecast.css.jsx';
+import { firstCardCss, remainingCardsCss } from './Forecast.css';
+
 
 const axios = require('axios').default;
 
@@ -14,6 +15,7 @@ class Forecast extends React.Component {
 
         this.state = {
             location: "",
+            coordinates: { lat: 0, lon: 0 },
             daysCondition: [],
         };
     }
@@ -21,28 +23,41 @@ class Forecast extends React.Component {
     componentDidMount() {
         if (navigator.geolocation) { 
             navigator.geolocation.getCurrentPosition(position => {
-                axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?` +
-                    `lat=${position.coords.latitude}&` +
-                    `lon=${position.coords.longitude}&` +
-                    `key=${process.env.REACT_APP_WEATHERBIT_API_KEY}&` +
-                    `lang=es&units=M&days=5`
-                )
-                .then(resp => {
-                    if (resp.status === 200) {
-                        this.setState({ 
-                            location: `${ resp.data.city_name }, ${ resp.data.country_code }`,
-                            daysCondition: resp.data.data
-                        });
-                    }
-                })
-                .catch(() => {
-                    this.setState({ location: "Ha sucedido un error al tratar de recibir la información." });
-                })
+                this.fetchForecastData(position)
             });
         }
         else {
             this.setState({ location: "La geolocalización no está disponible." })
         }
+    }
+
+    fetchForecastData(position) {
+        const url = 'https://api.weatherbit.io/v2.0/forecast/';
+        const coords = `lat=${position.coords.latitude}&lon=${position.coords.longitude}&` +
+                        `key=${process.env.REACT_APP_WEATHERBIT_API_KEY}&`;
+
+        axios.all([
+            axios.get(`${ url }/daily?${ coords }lang=es&units=M&days=5`),
+            axios.get(`${ url }/hourly?${ coords }lang=es&units=M&hours=12`)
+        ])
+        .then(response => {
+            if (response[0].status === 200) {
+                this.setState({
+                    coordinates: { 
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude
+                    },
+                    location: `${ response[0].data.city_name }, ${ response[0].data.country_code }`,
+                    daysCondition: response[0].data.data
+                });
+            }
+            if (response[1].status === 200) {
+                //this.setState({});
+            }
+        })
+        .catch(() => {
+            this.setState({ location: "Ha sucedido un error al tratar de recibir la información." });
+        });
     }
 
     renderCardsDaysCondition() {
@@ -65,7 +80,7 @@ class Forecast extends React.Component {
                     windSpeed=          { day.wind_gust_spd }
                     precipitation=      { day.pop }
                     condition=          { day.weather.description }
-                    customClass=        { index === 0 ? firstCardCss : {} }
+                    customStyle=        { index === 0 ? firstCardCss : remainingCardsCss }
                 />
             );
         });
@@ -90,7 +105,7 @@ class Forecast extends React.Component {
     render() {
         return (
             <section>
-                <Header text={ this.state.location }/>
+                <Header location={ this.state.location }/>
                 <CardDeck>
                     { this.renderCardsDaysCondition() }
                 </CardDeck>

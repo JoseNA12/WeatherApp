@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { cardCss, imgCss } from './DayCondition.css.jsx';
+import { cardCss, imgCss } from './DayCondition.css';
 import Card from 'react-bootstrap/Card';
 
 
@@ -21,22 +21,31 @@ class DayCondition extends React.Component {
             windSpeed:          this.props.windSpeed,
             precipitation:      this.props.precipitation, 
             condition:          this.props.condition,
-            customClass:        this.props.customClass
+            customStyle:        this.props.customStyle,
         }
+
     }
 
     render() {
         return (
-            <Card className={ `text-center` } style={ { ...cardCss, ...this.state.customClass } }>
+            <Card 
+                className={ `text-center ${ this.props.customClass }` } 
+                style={ { ...cardCss, ...this.state.customStyle } }>
+
                 <Card.Body> 
                     <Card.Title><b>{ this.state.day }</b></Card.Title>
                     <small className="text-muted">{ `${ this.state.date }, ${ this.state.time }` }</small> <br />
-                    <img className="imgForecast" variant="top" src={ require(`../../images/forecast/${ this.state.image }.png`) } alt={ this.props.condition } style={ imgCss }/><br />
+                    <img 
+                        className="imgForecast" variant="top" 
+                        src={ require(`../../images/forecast/${ this.state.image }.png`) } 
+                        alt={ this.props.condition } 
+                        style={ imgCss }/><br 
+                    />
                     <h3><b>{ this.state.temperatureValue }°</b></h3>
-                    <small className="text-muted">{ `Min: ${ this.state.temperatureMin }° / Max: ${ this.state.temperatureMax }°` }</small> <br /><br />
-                    &#x2602; <small className="text-muted">{ `${ this.state.precipitation }%` }</small> <br />
-                    &#10051; <small className="text-muted">{ `${ this.state.windSpeed } m/s` }</small> <br />
-                    <small className="text-muted">{ `Humedad: ${ this.state.windSpeed }%` }</small> <br />
+                    <small className="text-muted">{ `Min: ${ this.state.temperatureMin }° / Max: ${ this.state.temperatureMax }°` }</small><br /><br />
+                    &#x2602; <small className="text-muted">{ `${ this.state.precipitation }%` }</small><br />
+                    &#10051; <small className="text-muted">{ `${ this.state.windSpeed } m/s` }</small><br />
+                    <small className="text-muted">{ `Humedad: ${ this.state.windSpeed }%` }</small><br />
                 </Card.Body>
                 <small className="text-muted"><b>{ this.state.condition }</b></small> <br />
             </Card>

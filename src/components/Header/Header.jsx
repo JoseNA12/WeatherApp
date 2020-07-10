@@ -1,16 +1,19 @@
 import React from 'react';
+import { headerCss, textHeaderCss } from './Header.css';
 
 
 const Header = props => {
     return (
-        <div className="text-center">
-            <h5 className="text-muted">{ props.text }</h5>
+        <div style={ headerCss }>
+            <div style={ textHeaderCss }>
+                <h5 className="text-muted">{ props.location }</h5>
+            </div>
         </div>
     );
 };
 
 Header.defaultProps = {
-    text: "Lugar desconocido"
+    location: "Lugar desconocido"
 }
 
 export default Header;
