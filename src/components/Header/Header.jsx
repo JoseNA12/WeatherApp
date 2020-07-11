@@ -13,7 +13,7 @@ const Header = props => {
 };
 
 Header.defaultProps = {
-    location: "Lugar desconocido"
+    location: "Lugar desconocido..., ¿que tal el clima en Marte?"
 }
 
 export default Header;

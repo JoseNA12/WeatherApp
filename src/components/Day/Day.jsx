@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { cardCss, imgCss } from './DayCondition.css';
+import { cardCss, imgCss } from './Day.css';
 import Card from 'react-bootstrap/Card';
 
 
-class DayCondition extends React.Component {
+class Day extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,7 +29,7 @@ class DayCondition extends React.Component {
     render() {
         return (
             <Card 
-                className={ `text-center ${ this.props.customClass }` } 
+                className={ `text-center ${ this.state.customClass }` } 
                 style={ { ...cardCss, ...this.state.customStyle } }>
 
                 <Card.Body> 
@@ -38,14 +38,14 @@ class DayCondition extends React.Component {
                     <img 
                         className="imgForecast" variant="top" 
                         src={ require(`../../images/forecast/${ this.state.image }.png`) } 
-                        alt={ this.props.condition } 
+                        alt={ this.state.condition } 
                         style={ imgCss }/><br 
                     />
                     <h3><b>{ this.state.temperatureValue }°</b></h3>
                     <small className="text-muted">{ `Min: ${ this.state.temperatureMin }° / Max: ${ this.state.temperatureMax }°` }</small><br /><br />
                     &#x2602; <small className="text-muted">{ `${ this.state.precipitation }%` }</small><br />
                     &#10051; <small className="text-muted">{ `${ this.state.windSpeed } m/s` }</small><br />
-                    <small className="text-muted">{ `Humedad: ${ this.state.windSpeed }%` }</small><br />
+                    <small className="text-muted">{ `Humedad: ${ this.state.humedity }%` }</small><br />
                 </Card.Body>
                 <small className="text-muted"><b>{ this.state.condition }</b></small> <br />
             </Card>
@@ -53,4 +53,4 @@ class DayCondition extends React.Component {
     }
 }
 
-export default DayCondition;
+export default Day;

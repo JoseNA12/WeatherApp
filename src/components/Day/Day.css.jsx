@@ -2,7 +2,11 @@ import colorsApp from '../../views/colorsApp';
 
 
 export const imgCss = {
-    width: "50px"
+    width: "65px"
+}
+
+export const tinyimgCss = {
+    width: "40px"
 }
 
 export const cardCss = {

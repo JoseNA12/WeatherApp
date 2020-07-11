@@ -1,7 +1,10 @@
 import React from 'react';
-import DayCondition from '../DayCondition/DayCondition';
+import Day from '../Day/Day';
+import DayDetail from '../DayDetail/DayDetail';
+import Separator from '../Separator/Separator';
 
 import CardDeck from 'react-bootstrap/CardDeck';
+import CardGroup from 'react-bootstrap/CardGroup';
 import Header from '../Header/Header';
 import { firstCardCss, remainingCardsCss } from './Forecast.css';
 
@@ -15,8 +18,8 @@ class Forecast extends React.Component {
 
         this.state = {
             location: "",
-            coordinates: { lat: 0, lon: 0 },
             daysCondition: [],
+            todaysConditionDetail: []
         };
     }
 
@@ -35,7 +38,6 @@ class Forecast extends React.Component {
         const url = 'https://api.weatherbit.io/v2.0/forecast/';
         const coords = `lat=${position.coords.latitude}&lon=${position.coords.longitude}&` +
                         `key=${process.env.REACT_APP_WEATHERBIT_API_KEY}&`;
-
         axios.all([
             axios.get(`${ url }/daily?${ coords }lang=es&units=M&days=5`),
             axios.get(`${ url }/hourly?${ coords }lang=es&units=M&hours=12`)
@@ -43,16 +45,14 @@ class Forecast extends React.Component {
         .then(response => {
             if (response[0].status === 200) {
                 this.setState({
-                    coordinates: { 
-                        lat: position.coords.latitude,
-                        lon: position.coords.longitude
-                    },
                     location: `${ response[0].data.city_name }, ${ response[0].data.country_code }`,
                     daysCondition: response[0].data.data
                 });
             }
             if (response[1].status === 200) {
-                //this.setState({});
+                this.setState({
+                    todaysConditionDetail: response[1].data.data
+                });
             }
         })
         .catch(() => {
@@ -67,7 +67,7 @@ class Forecast extends React.Component {
             const date = this.getFormatDate(day.ts);
             
             return (
-                <DayCondition 
+                <Day 
                     key=                { index }
                     day=                { this.getDayName(date) }
                     date=               { this.getMonthName(date) }
@@ -87,6 +87,23 @@ class Forecast extends React.Component {
         return cards;
     }
 
+    renderCardsTodaysCondition() {
+        const cards = this.state.todaysConditionDetail.map((detail, index) => {
+            console.log(detail.datetime);
+            return (
+                <DayDetail 
+                    key=                { index }
+                    time=               { this.getFormatTime(detail.timestamp_local) }
+                    image=              { detail.weather.icon }
+                    temperatureValue=   { detail.temp }
+                    precipitation=      { detail.pop }
+                    condition=          { detail.weather.description }
+                />
+            );    
+        });
+        return cards
+    }
+
     getDayName(date) {
         var days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         return `${days[date.getDay()]}`;
@@ -98,8 +115,8 @@ class Forecast extends React.Component {
 
     getFormatDate(ts) { return new Date(ts * 1000); }
 
-    getFormatTime() {
-        return new Date().toLocaleTimeString('en-US', { hour12: true, hour: "numeric" });
+    getFormatTime(date = null) {
+        return new Date(date).toLocaleTimeString('en-US', { hour12: true, hour: "numeric" });
     }
 
     render() {
@@ -109,6 +126,12 @@ class Forecast extends React.Component {
                 <CardDeck>
                     { this.renderCardsDaysCondition() }
                 </CardDeck>
+
+                <Separator />
+                
+                <CardGroup>
+                    { this.renderCardsTodaysCondition() }
+                </CardGroup>
             </section>
         )
     }

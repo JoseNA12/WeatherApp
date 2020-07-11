@@ -3,7 +3,7 @@ import Forecast from './components/Forecast/Forecast'
 
 import Container from 'react-bootstrap/Container';
 import NavigationBar from './components/NavigationBar/NavigationBar';
-import Footer from './components/Footer/Footer';
+import Separator from './components/Separator/Separator';
 
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
 
             <Forecast />
 
-            <Footer />
+            <Separator />
         </Container>
     );
 };
