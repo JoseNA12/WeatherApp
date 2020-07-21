@@ -61,11 +61,10 @@ class Forecast extends React.Component {
     }
 
     renderCardsDaysCondition() {
-        const currentTime = this.getFormatTime();
+        const currentTime = this.getFormatTime(null);
 
         const cards = this.state.daysCondition.map((day, index) => {
             const date = this.getFormatDate(day.ts);
-            
             return (
                 <Day 
                     key=                { index }
@@ -89,7 +88,6 @@ class Forecast extends React.Component {
 
     renderCardsTodaysCondition() {
         const cards = this.state.todaysConditionDetail.map((detail, index) => {
-            console.log(detail.datetime);
             return (
                 <DayDetail 
                     key=                { index }
@@ -115,8 +113,12 @@ class Forecast extends React.Component {
 
     getFormatDate(ts) { return new Date(ts * 1000); }
 
-    getFormatTime(date = null) {
-        return new Date(date).toLocaleTimeString('en-US', { hour12: true, hour: "numeric" });
+    getFormatTime(date) {
+        const config = { hour12: true, hour: "numeric" };
+        if (date !== null) {
+            return new Date(date).toLocaleTimeString('en-US', config);
+        }
+        return new Date().toLocaleTimeString('en-US', config);
     }
 
     render() {
